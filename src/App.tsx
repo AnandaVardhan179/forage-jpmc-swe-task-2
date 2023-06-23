@@ -40,7 +40,8 @@ class App extends Component<{}, IState> {
    * Get new data from server and update the state with the new data
    */
   getDataFromServer() {
-    DataStreamer.getData((serverResponds: ServerRespond[]) => {
+  let X = 0;
+    const interval = setInterval(() => {
     DataStreamer.getData((serverResponds: ServerRespond[])=> {
       // Update the state by creating a new array of data that consists of
       // Previous data in the state and the new data from server
@@ -49,10 +50,11 @@ class App extends Component<{}, IState> {
        showGraph: true,
        });
     });
-    x++;
-    if (x > 1000) {
+    X++;
+    if (X > 1000) {
     clearInterval(interval);
-    },100);
+    }
+    }, 100);
   }
 
   /**
